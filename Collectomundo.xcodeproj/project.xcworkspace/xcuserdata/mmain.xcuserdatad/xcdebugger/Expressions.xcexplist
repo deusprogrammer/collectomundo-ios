@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "GameCollectionViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "game.coverArt">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameSearchViewController.(saveToCollection(gbGame : GBGame) -&gt; ()).(closure #1):ViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "GameSearchViewController.(tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell).(closure #1):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath">
+            </PersistentString>
+            <PersistentString
+               value = "self.results[indexPath.row]">
+            </PersistentString>
+            <PersistentString
+               value = "result.coverArtUrl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameCollectionViewController.numberOfSections(in : UITableView) -&gt; Int:ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fetchedResultsController.sections">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static JSONHelper.search(path : String, object : Any) -&gt; Any!:JSONHelper.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentNode as! String">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GiantBombSDK.(getGamesByName(name : String, platformFilter : [String], completionHandler : ([GBGame], Int) -&gt; ()!, errorHandler : (Error) -&gt; ()!) -&gt; ()).(closure #1):GiantBombSDK.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(result as Dictionary&lt;String, AnyObject&gt;)[&quot;image&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GiantBombSDK.(getGamesByName(name : String, completionHandler : ([GBGame], Int) -&gt; ()!, errorHandler : (Error) -&gt; ()!) -&gt; ()).(closure #1):GiantBombSDK.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NBRestRequest.setupPayload() -&gt; ():NBRestClient.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "url">
+            </PersistentString>
+            <PersistentString
+               value = "request">
+            </PersistentString>
+            <PersistentString
+               value = "body">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -15,12 +15,13 @@ extension Game {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Game> {
         return NSFetchRequest<Game>(entityName: "Game");
     }
-
+    
+    @NSManaged public var gameId : String
+    @NSManaged public var detailUrl : String?
     @NSManaged public var name: String?
     @NSManaged public var platform: String?
     @NSManaged public var releaseDate: NSDate?
     @NSManaged public var coverArt: NSData?
     @NSManaged public var inCollection: Bool
     @NSManaged public var inWishList: Bool
-
 }
