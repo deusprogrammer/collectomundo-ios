@@ -47,6 +47,12 @@
          contextName = "GiantBombSDK.(getGamesByName(name : String, platformFilter : [String], completionHandler : ([GBGame], Int) -&gt; ()!, errorHandler : (Error) -&gt; ()!) -&gt; ()).(closure #1):GiantBombSDK.swift">
          <PersistentStrings>
             <PersistentString
+               value = "temp1 == nil">
+            </PersistentString>
+            <PersistentString
+               value = "temp1 is NSNull">
+            </PersistentString>
+            <PersistentString
                value = "(result as Dictionary&lt;String, AnyObject&gt;)[&quot;image&quot;]">
             </PersistentString>
          </PersistentStrings>
@@ -65,6 +71,31 @@
             </PersistentString>
             <PersistentString
                value = "body">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameSearchViewController.(searchPressed(AnyObject) -&gt; ()).(closure #1).(closure #1):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "game.platform">
+            </PersistentString>
+            <PersistentString
+               value = "game.name">
+            </PersistentString>
+            <PersistentString
+               value = "game.gameId">
+            </PersistentString>
+            <PersistentString
+               value = "pgame.gameId">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameSearchViewController.getPlatformBy(section : Int) -&gt; String:ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Array(platformMap.keys)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

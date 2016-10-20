@@ -17,6 +17,9 @@ struct GBGame {
     var coverArtUrl : String! = nil
     var coverArtData : Data! = nil
     var detailUrl : String! = nil
+    
+    var inCollection : Bool = false
+    var inWishList   : Bool = false
 }
 
 class GiantBombConfig {
@@ -66,14 +69,15 @@ class GiantBombSDK {
                 
                 var games = [GBGame]()
                 for result in results {
-                    let platforms = JSONHelper.search(path: "/platforms", object: result) as! Array<AnyObject>
+                    let temp1 = JSONHelper.search(path: "/platforms", object: result)
+                    let platforms = temp1 != nil ? temp1 as! Array<AnyObject> : []
                     
                     for platform in platforms {
-                        let temp = JSONHelper.search(path: "/image/small_url", object: result)
+                        let temp2 = JSONHelper.search(path: "/image/small_url", object: result)
                         
                         var game = GBGame()
                         game.name = result["name"] as! String
-                        game.coverArtUrl = temp != nil ? temp as! String : nil
+                        game.coverArtUrl = temp2 != nil ? temp2 as! String : nil
                         game.platform = platform["name"] as! String
                         game.platformKey = platform["abbreviation"] as! String
                         game.detailUrl = result["site_detail_url"] as! String
