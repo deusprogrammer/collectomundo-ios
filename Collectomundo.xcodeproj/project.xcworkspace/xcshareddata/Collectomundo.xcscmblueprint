@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "18C0D5F194768B437641C4E790268DF2DDEC9597",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D576A9577ADEF792D9EAAE12A454AF8DE4533BD7" : 9223372036854775807,
+    "18C0D5F194768B437641C4E790268DF2DDEC9597" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "EE41AD13-C874-4FBC-A97E-4E01401E6D77",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D576A9577ADEF792D9EAAE12A454AF8DE4533BD7" : "udacity-ios-project4\/",
+    "18C0D5F194768B437641C4E790268DF2DDEC9597" : "Collectomundo\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Collectomundo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Collectomundo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:deusprogrammer\/collectomundo-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "18C0D5F194768B437641C4E790268DF2DDEC9597"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:deusprogrammer\/udacity-ios-project4.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D576A9577ADEF792D9EAAE12A454AF8DE4533BD7"
+    }
+  ]
+}

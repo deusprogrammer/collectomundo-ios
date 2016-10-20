@@ -111,11 +111,8 @@
 		59A13FDE1DB6A91200D20FE0 /* Collectomundo */ = {
 			isa = PBXGroup;
 			children = (
-				59A140181DB6FB3F00D20FE0 /* Game+CoreDataClass.swift */,
-				59A140191DB6FB3F00D20FE0 /* Game+CoreDataProperties.swift */,
-				59A140161DB6F74300D20FE0 /* DataLayerService.swift */,
-				59A140101DB6ADFA00D20FE0 /* JSONHelper.swift */,
-				59A140111DB6ADFA00D20FE0 /* NBRestClient.swift */,
+				59A1401D1DB893A600D20FE0 /* Model */,
+				59A1401C1DB8939900D20FE0 /* Service */,
 				59A13FDF1DB6A91200D20FE0 /* AppDelegate.swift */,
 				59A13FE11DB6A91200D20FE0 /* ViewController.swift */,
 				59A13FE31DB6A91200D20FE0 /* Main.storyboard */,
@@ -123,7 +120,6 @@
 				59A13FEB1DB6A91200D20FE0 /* LaunchScreen.storyboard */,
 				59A13FEE1DB6A91200D20FE0 /* Info.plist */,
 				59A13FE61DB6A91200D20FE0 /* Collectomundo.xcdatamodeld */,
-				59A140141DB6B0B100D20FE0 /* GiantBombSDK.swift */,
 			);
 			path = Collectomundo;
 			sourceTree = "<group>";
@@ -144,6 +140,26 @@
 				59A140041DB6A91300D20FE0 /* Info.plist */,
 			);
 			path = CollectomundoUITests;
+			sourceTree = "<group>";
+		};
+		59A1401C1DB8939900D20FE0 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				59A140161DB6F74300D20FE0 /* DataLayerService.swift */,
+				59A140101DB6ADFA00D20FE0 /* JSONHelper.swift */,
+				59A140111DB6ADFA00D20FE0 /* NBRestClient.swift */,
+				59A140141DB6B0B100D20FE0 /* GiantBombSDK.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		59A1401D1DB893A600D20FE0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				59A140181DB6FB3F00D20FE0 /* Game+CoreDataClass.swift */,
+				59A140191DB6FB3F00D20FE0 /* Game+CoreDataProperties.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

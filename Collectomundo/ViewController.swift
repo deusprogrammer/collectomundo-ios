@@ -9,6 +9,18 @@
 import UIKit
 import CoreData
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 class GameSearchTableCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var platformLabel: UILabel!
@@ -30,6 +42,8 @@ class GameWishListViewController : UIViewController, UITableViewDelegate, UITabl
     
     var context = DataLayerService.managedObjectContext
     
+    var dateFormatter = DateFormatter()
+    
     lazy var fetchedResultsController : NSFetchedResultsController<Game> = {
         let fetchRequest = NSFetchRequest<Game>(entityName: "Game")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "platform", ascending: true)]
@@ -49,6 +63,8 @@ class GameWishListViewController : UIViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.hideKeyboardWhenTappedAround()
+        
         do {
             try fetchedResultsController.performFetch()
         } catch {
@@ -95,12 +111,14 @@ class GameWishListViewController : UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableCell") as! GameSearchTableCell
         
-        let game = fetchedResultsController.object(at: indexPath) 
+        let game = fetchedResultsController.object(at: indexPath)
+        
+        dateFormatter.dateStyle = .long
         
         cell.gameImage.contentMode = UIViewContentMode.scaleAspectFit
         cell.titleLabel.text = game.name
         cell.platformLabel.text = game.platform
-        cell.releaseDateLabel.text = "N/A"
+        cell.releaseDateLabel.text = game.releaseDate != nil ? "Released on \(dateFormatter.string(from: game.releaseDate! as Date))" : "Release date unknown"
         cell.inCollectionLabel.text = "In Wishlist"
         if (game.coverArt != nil) {
             cell.gameImage.image = UIImage(data: game.coverArt as! Data)
@@ -146,6 +164,8 @@ class GameCollectionViewController : UIViewController, UITableViewDelegate, UITa
     
     var context = DataLayerService.managedObjectContext
     
+    var dateFormatter = DateFormatter()
+    
     lazy var fetchedResultsController : NSFetchedResultsController<Game> = {
         let fetchRequest = NSFetchRequest<Game>(entityName: "Game")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "platform", ascending: true)]
@@ -165,6 +185,7 @@ class GameCollectionViewController : UIViewController, UITableViewDelegate, UITa
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.hideKeyboardWhenTappedAround()
         
         do {
             try fetchedResultsController.performFetch()
@@ -208,10 +229,12 @@ class GameCollectionViewController : UIViewController, UITableViewDelegate, UITa
         
         let game = fetchedResultsController.object(at: indexPath)
         
+        dateFormatter.dateStyle = .long
+        
         cell.gameImage.contentMode = UIViewContentMode.scaleAspectFit
         cell.titleLabel.text = game.name
         cell.platformLabel.text = game.platform
-        cell.releaseDateLabel.text = "N/A"
+        cell.releaseDateLabel.text = game.releaseDate != nil ? "Released on \(dateFormatter.string(from: game.releaseDate! as Date))" : "Release date unknown"
         cell.inCollectionLabel.text = "In Collection"
         if (game.coverArt != nil) {
             cell.gameImage.image = UIImage(data: game.coverArt as! Data)
@@ -267,6 +290,8 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
     var noResultsLabel : UILabel?
     var loadingLabel : UILabel?
     
+    var dateFormatter = DateFormatter()
+    
     override func viewWillAppear(_ animated: Bool) {
         self.emptyLabel = UILabel()
         self.emptyLabel?.text = "Search for Games"
@@ -283,6 +308,8 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.backgroundView = emptyLabel
+        
+        self.hideKeyboardWhenTappedAround()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -389,10 +416,12 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
         let index = indexPath
         var result = getGameAt(indexPath: indexPath)
         
+        dateFormatter.dateStyle = .long
+        
         cell.gameImage.contentMode = UIViewContentMode.scaleAspectFit
         cell.titleLabel.text = result.name
         cell.platformLabel.text = result.platformKey
-        cell.releaseDateLabel.text = "N/A"
+        cell.releaseDateLabel.text = result.releaseDate != nil ? "Released on \(dateFormatter.string(from: result.releaseDate!))" : "Release date unknown"
         
         if (result.inCollection) {
             cell.inCollectionLabel.text = "In Collection"
@@ -443,9 +472,10 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
         if (titleSearch.text!.isEmpty) {
             return
         }
+        
         setLoadingScreen()
         sdk.getGamesByName(
-            name: titleSearch.text!,
+            name: titleSearch.text!.trimmingCharacters(in: .whitespaces),
             platformFilter: GameSearchViewController.consoleFilter,
             completionHandler: {(games: [GBGame], pages: Int) -> Void in
                 self.platformList = [String]()

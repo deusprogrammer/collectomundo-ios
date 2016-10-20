@@ -12,8 +12,8 @@ struct GBGame {
     var gameId : String = "none-id"
     var name : String = "Unknown"
     var platform : String = "Unknown"
-    var platformKey : String = "NA"
-    var releaseDate : Date = Date()
+    var platformKey : String = "N/A"
+    var releaseDate : Date?
     var coverArtUrl : String! = nil
     var coverArtData : Data! = nil
     var detailUrl : String! = nil
@@ -83,6 +83,12 @@ class GiantBombSDK {
                         game.detailUrl = result["site_detail_url"] as! String
                         game.gameId = "\(platform["abbreviation"] as! String):\(result["id"] as! Int)"
                         
+                        
+                        if (!(result["original_release_date"] is NSNull)) {
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                            game.releaseDate = dateFormatter.date(from: result["original_release_date"] as! String)!
+                        }
                         if (platformFilter.contains(game.platformKey)) {
                             games.append(game)
                         }
