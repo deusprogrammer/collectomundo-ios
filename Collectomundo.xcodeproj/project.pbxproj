@@ -15,12 +15,12 @@
 		59A13FED1DB6A91200D20FE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A13FEB1DB6A91200D20FE0 /* LaunchScreen.storyboard */; };
 		59A13FF81DB6A91300D20FE0 /* CollectomundoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A13FF71DB6A91300D20FE0 /* CollectomundoTests.swift */; };
 		59A140031DB6A91300D20FE0 /* CollectomundoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A140021DB6A91300D20FE0 /* CollectomundoUITests.swift */; };
-		59A140121DB6ADFA00D20FE0 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A140101DB6ADFA00D20FE0 /* JSONHelper.swift */; };
-		59A140131DB6ADFA00D20FE0 /* NBRestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A140111DB6ADFA00D20FE0 /* NBRestClient.swift */; };
 		59A140151DB6B0B100D20FE0 /* GiantBombSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A140141DB6B0B100D20FE0 /* GiantBombSDK.swift */; };
-		59A140171DB6F74300D20FE0 /* DataLayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A140161DB6F74300D20FE0 /* DataLayerService.swift */; };
 		59A1401A1DB6FB3F00D20FE0 /* Game+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A140181DB6FB3F00D20FE0 /* Game+CoreDataClass.swift */; };
 		59A1401B1DB6FB3F00D20FE0 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A140191DB6FB3F00D20FE0 /* Game+CoreDataProperties.swift */; };
+		59A140211DB8F91500D20FE0 /* DataLayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A1401E1DB8F91500D20FE0 /* DataLayerService.swift */; };
+		59A140221DB8F91500D20FE0 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A1401F1DB8F91500D20FE0 /* JSONHelper.swift */; };
+		59A140231DB8F91500D20FE0 /* NBRestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A140201DB8F91500D20FE0 /* NBRestClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,12 +55,12 @@
 		59A13FFE1DB6A91300D20FE0 /* CollectomundoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CollectomundoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59A140021DB6A91300D20FE0 /* CollectomundoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectomundoUITests.swift; sourceTree = "<group>"; };
 		59A140041DB6A91300D20FE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		59A140101DB6ADFA00D20FE0 /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONHelper.swift; path = "../../udacity-ios-project4/Virtual Tourist/JSONHelper.swift"; sourceTree = "<group>"; };
-		59A140111DB6ADFA00D20FE0 /* NBRestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NBRestClient.swift; path = "../../udacity-ios-project4/Virtual Tourist/NBRestClient.swift"; sourceTree = "<group>"; };
 		59A140141DB6B0B100D20FE0 /* GiantBombSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiantBombSDK.swift; sourceTree = "<group>"; };
-		59A140161DB6F74300D20FE0 /* DataLayerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataLayerService.swift; path = "../../udacity-ios-project4/Virtual Tourist/DataLayerService.swift"; sourceTree = "<group>"; };
 		59A140181DB6FB3F00D20FE0 /* Game+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Game+CoreDataClass.swift"; path = "../Game+CoreDataClass.swift"; sourceTree = "<group>"; };
 		59A140191DB6FB3F00D20FE0 /* Game+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Game+CoreDataProperties.swift"; path = "../Game+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		59A1401E1DB8F91500D20FE0 /* DataLayerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLayerService.swift; sourceTree = "<group>"; };
+		59A1401F1DB8F91500D20FE0 /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
+		59A140201DB8F91500D20FE0 /* NBRestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NBRestClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,9 +145,9 @@
 		59A1401C1DB8939900D20FE0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				59A140161DB6F74300D20FE0 /* DataLayerService.swift */,
-				59A140101DB6ADFA00D20FE0 /* JSONHelper.swift */,
-				59A140111DB6ADFA00D20FE0 /* NBRestClient.swift */,
+				59A1401E1DB8F91500D20FE0 /* DataLayerService.swift */,
+				59A1401F1DB8F91500D20FE0 /* JSONHelper.swift */,
+				59A140201DB8F91500D20FE0 /* NBRestClient.swift */,
 				59A140141DB6B0B100D20FE0 /* GiantBombSDK.swift */,
 			);
 			name = Service;
@@ -299,13 +299,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59A140131DB6ADFA00D20FE0 /* NBRestClient.swift in Sources */,
+				59A140231DB8F91500D20FE0 /* NBRestClient.swift in Sources */,
 				59A1401A1DB6FB3F00D20FE0 /* Game+CoreDataClass.swift in Sources */,
 				59A13FE21DB6A91200D20FE0 /* ViewController.swift in Sources */,
 				59A140151DB6B0B100D20FE0 /* GiantBombSDK.swift in Sources */,
-				59A140121DB6ADFA00D20FE0 /* JSONHelper.swift in Sources */,
-				59A140171DB6F74300D20FE0 /* DataLayerService.swift in Sources */,
 				59A13FE01DB6A91200D20FE0 /* AppDelegate.swift in Sources */,
+				59A140211DB8F91500D20FE0 /* DataLayerService.swift in Sources */,
+				59A140221DB8F91500D20FE0 /* JSONHelper.swift in Sources */,
 				59A13FE81DB6A91200D20FE0 /* Collectomundo.xcdatamodeld in Sources */,
 				59A1401B1DB6FB3F00D20FE0 /* Game+CoreDataProperties.swift in Sources */,
 			);
