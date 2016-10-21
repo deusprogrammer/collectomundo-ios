@@ -104,6 +104,7 @@
                                     <action selector="searchPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FRI-kL-jE6"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="TYh-DI-tdo"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -113,13 +114,16 @@
                             <constraint firstItem="HFy-OC-dxQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Pu7-5F-ICY"/>
                             <constraint firstAttribute="bottom" secondItem="M9u-ww-vSa" secondAttribute="bottom" constant="49" id="SUQ-Q4-HIr"/>
                             <constraint firstItem="rMu-fH-Bpo" firstAttribute="trailing" secondItem="M9u-ww-vSa" secondAttribute="trailing" id="bbb-12-R1g"/>
+                            <constraint firstItem="TYh-DI-tdo" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fHm-UK-NUE"/>
                             <constraint firstItem="rMu-fH-Bpo" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="16" id="iur-WZ-Kw1"/>
+                            <constraint firstItem="TYh-DI-tdo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qhQ-Fs-zcq"/>
                             <constraint firstItem="HFy-OC-dxQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="sOd-6q-Rbv"/>
                             <constraint firstItem="HFy-OC-dxQ" firstAttribute="leading" secondItem="M9u-ww-vSa" secondAttribute="leading" id="y6z-Ij-wyA"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Discover" id="NUJ-8M-xNE"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="TYh-DI-tdo" id="BzL-Ql-2Hb"/>
                         <outlet property="searchButton" destination="rMu-fH-Bpo" id="SE7-IL-77p"/>
                         <outlet property="tableView" destination="M9u-ww-vSa" id="faN-j2-5qN"/>
                         <outlet property="titleSearch" destination="HFy-OC-dxQ" id="ZOZ-eC-Mmq"/>

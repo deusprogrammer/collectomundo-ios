@@ -287,6 +287,7 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
         "3DO", "JAG", "CDI"
     ]
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var titleSearch: UITextField!
@@ -300,6 +301,8 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
     var emptyLabel : UILabel?
     var noResultsLabel : UILabel?
     var loadingLabel : UILabel?
+    
+    var loadingInterstitial : UIActivityIndicatorView = UIActivityIndicatorView()
     
     var dateFormatter = DateFormatter()
     
@@ -656,7 +659,8 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.reloadData()
         self.titleSearch.isEnabled = false
         self.searchButton.isEnabled = false
-        self.tableView.backgroundView = loadingLabel
+        self.tableView.backgroundView = nil
+        self.activityIndicator.startAnimating()
     }
     
     // Remove the activity indicator from the main view
@@ -664,6 +668,7 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
         self.titleSearch.isEnabled = true
         self.searchButton.isEnabled = true
         self.tableView.backgroundView = label
+        self.activityIndicator.stopAnimating()
     }
 }
 
