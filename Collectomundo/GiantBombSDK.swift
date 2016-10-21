@@ -37,7 +37,7 @@ class GiantBombSDK {
         name: String,
         platformFilter: [String],
         completionHandler: (([GBGame], Int) -> Void)!,
-        errorHandler: ((Error) -> Void)!) {
+        errorHandler: ((String, String) -> Void)!) {
         let client = NBRestClient.get(
             hostname: "www.giantbomb.com",
             uri: "/api/games",
@@ -52,8 +52,6 @@ class GiantBombSDK {
         client.sendAsync(completionHandler: {(response: NBRestResponse!) -> Void in
             do {
                 let body : Any = try self.processResponse(response: response)
-                
-                print(body as! Dictionary<String, Any>)
                 
                 // Acquire the results from the results key at the root of the returned object
                 let results = JSONHelper.search(path: "/results", object: body) as! Array<AnyObject>
@@ -99,10 +97,20 @@ class GiantBombSDK {
                     completionHandler(games, pages)
                     return
                 }
-            } catch {
+            } catch GiantBombException.clientError(let message) {
                 if (errorHandler != nil) {
-                    errorHandler(error)
+                    errorHandler("SDK Fault", message)
                 }
+            } catch GiantBombException.httpError(let message, let statusCode) {
+                if (errorHandler != nil) {
+                    errorHandler("API Fault", "Status Code: \(statusCode) -> \(message)")
+                }
+            } catch GiantBombException.jsonParsingError(let message) {
+                if (errorHandler != nil) {
+                    errorHandler("JSON Parsing Error", message)
+                }
+            } catch {
+                
             }
         })
     }
@@ -121,11 +129,10 @@ class GiantBombSDK {
             throw GiantBombException.jsonParsingError(message: error.localizedDescription)
         }
         
-        print("Status Code:  \(response.statusCode)")
-        
         // If status code not 201, then fail
         if (response.statusCode != 200) {
-            throw GiantBombException.httpError(message: "Non 200 status code", statusCode: response.statusCode)
+            let errorMessage = JSONHelper.search(path: "/error", object: data) as! String
+            throw GiantBombException.httpError(message: errorMessage, statusCode: response.statusCode)
         }
         
         return data

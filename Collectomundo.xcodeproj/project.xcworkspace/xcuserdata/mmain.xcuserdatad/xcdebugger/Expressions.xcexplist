@@ -3,43 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "GameCollectionViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:ViewController.swift">
+         contextName = "GameSearchViewController.getPlatformBy(section : Int) -&gt; String:ViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "game.coverArt">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "GameSearchViewController.(saveToCollection(gbGame : GBGame) -&gt; ()).(closure #1):ViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "GameSearchViewController.(tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell).(closure #1):ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "indexPath">
-            </PersistentString>
-            <PersistentString
-               value = "self.results[indexPath.row]">
-            </PersistentString>
-            <PersistentString
-               value = "result.coverArtUrl">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "GameCollectionViewController.numberOfSections(in : UITableView) -&gt; Int:ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "fetchedResultsController.sections">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "static JSONHelper.search(path : String, object : Any) -&gt; Any!:JSONHelper.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "currentNode as! String">
+               value = "Array(platformMap.keys)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -61,20 +28,6 @@
          contextName = "GiantBombSDK.(getGamesByName(name : String, completionHandler : ([GBGame], Int) -&gt; ()!, errorHandler : (Error) -&gt; ()!) -&gt; ()).(closure #1):GiantBombSDK.swift">
       </ContextState>
       <ContextState
-         contextName = "NBRestRequest.setupPayload() -&gt; ():NBRestClient.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "url">
-            </PersistentString>
-            <PersistentString
-               value = "request">
-            </PersistentString>
-            <PersistentString
-               value = "body">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "GameSearchViewController.(searchPressed(AnyObject) -&gt; ()).(closure #1).(closure #1):ViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -92,12 +45,93 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameSearchViewController.getPlatformBy(section : Int) -&gt; String:ViewController.swift">
+         contextName = "static JSONHelper.search(path : String, object : Any) -&gt; Any!:JSONHelper.swift">
          <PersistentStrings>
             <PersistentString
-               value = "Array(platformMap.keys)">
+               value = "currentNode as! String">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameSearchViewController.(saveToCollection(gbGame : GBGame) -&gt; ()).(closure #1):ViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NBRestRequest.setupPayload() -&gt; ():NBRestClient.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "url">
+            </PersistentString>
+            <PersistentString
+               value = "request">
+            </PersistentString>
+            <PersistentString
+               value = "body">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameSearchViewController.(tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell).(closure #1):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath">
+            </PersistentString>
+            <PersistentString
+               value = "self.results[indexPath.row]">
+            </PersistentString>
+            <PersistentString
+               value = "result.coverArtUrl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameSearchViewController.rescanSearchResults() -&gt; ():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "result">
+            </PersistentString>
+            <PersistentString
+               value = "result[0]">
+            </PersistentString>
+            <PersistentString
+               value = "game.name">
+            </PersistentString>
+            <PersistentString
+               value = "game.gameId">
+            </PersistentString>
+            <PersistentString
+               value = "game.inCollection">
+            </PersistentString>
+            <PersistentString
+               value = "game.inWishList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameSearchViewController.(searchPressed(AnyObject) -&gt; ()).(closure #2):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "error.localDescription">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameCollectionViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "game.coverArt">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameCollectionViewController.numberOfSections(in : UITableView) -&gt; Int:ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fetchedResultsController.sections">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameSearchViewController.(tableView(UITableView, editActionsForRowAt : IndexPath) -&gt; [UITableViewRowAction]?).(closure #1):ViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

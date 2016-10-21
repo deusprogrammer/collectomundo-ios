@@ -19,6 +19,18 @@ extension UIViewController {
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func displayError(title: String, message: String, completionHandler: (() -> Void)! = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: {(action: UIAlertAction) in
+            if (completionHandler != nil) {
+                completionHandler()
+            }
+        })
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 class GameSearchTableCell: UITableViewCell {
@@ -68,7 +80,7 @@ class GameWishListViewController : UIViewController, UITableViewDelegate, UITabl
         do {
             try fetchedResultsController.performFetch()
         } catch {
-            print(error)
+            self.displayError(title: "Core Data Error", message: error as! String)
         }
     }
     
@@ -81,15 +93,14 @@ class GameWishListViewController : UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let game = fetchedResultsController.object(at: indexPath)
         let remove = UITableViewRowAction(style: .normal, title: "Remove") { action, index in
+            let game = self.fetchedResultsController.object(at: indexPath)
             self.removeGame(game: game)
         }
         remove.backgroundColor = UIColor.red
         let move = UITableViewRowAction(style: .normal, title: "Collect") { action, index in
-            game.inCollection = true
-            game.inWishList = false
-            self.updateGame(game: game)
+            let game = self.fetchedResultsController.object(at: indexPath)
+            self.promoteGame(game: game)
         }
         move.backgroundColor = UIColor(red: 0, green: 0.898, blue: 0.7922, alpha: 1.0)
         return [move, remove]
@@ -141,19 +152,19 @@ class GameWishListViewController : UIViewController, UITableViewDelegate, UITabl
                 self.context.delete(game)
                 try self.context.save()
             } catch {
-                print(error)
+                self.displayError(title: "Core Data Error", message: error as! String)
             }
         }
     }
     
-    private func updateGame(game: Game) {
+    private func promoteGame(game: Game) {
         DispatchQueue.main.async {
             do {
                 game.inCollection = true
                 game.inWishList = false
                 try self.context.save()
             } catch {
-                print(error)
+                self.displayError(title: "Core Data Error", message: error as! String)
             }
         }
     }
@@ -190,7 +201,7 @@ class GameCollectionViewController : UIViewController, UITableViewDelegate, UITa
         do {
             try fetchedResultsController.performFetch()
         } catch {
-            print(error)
+            self.displayError(title: "Core Data Error", message: error as! String)
         }
     }
     
@@ -203,8 +214,8 @@ class GameCollectionViewController : UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let game = fetchedResultsController.object(at: indexPath)
         let remove = UITableViewRowAction(style: .normal, title: "Remove") { action, index in
+            let game = self.fetchedResultsController.object(at: indexPath)
             self.removeGame(game: game)
         }
         remove.backgroundColor = UIColor.red
@@ -257,7 +268,7 @@ class GameCollectionViewController : UIViewController, UITableViewDelegate, UITa
                 self.context.delete(game)
                 try self.context.save()
             } catch {
-                print(error)
+                self.displayError(title: "Core Data Error", message: error as! String)
             }
         }
     }
@@ -310,6 +321,7 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.backgroundView = emptyLabel
         
         self.hideKeyboardWhenTappedAround()
+        self.rescanSearchResults()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -448,7 +460,7 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
                         }
                     }
                 } catch {
-                    print(error)
+                    self.displayError(title: "Core Data Error", message: error as! String)
                 }
             }
         }
@@ -483,6 +495,10 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.pages = pages
                 
                 DispatchQueue.main.async {
+                    if (games.count == 0) {
+                        self.removeLoadingScreen(label: self.noResultsLabel)
+                        return
+                    }
                     for var game in games {
                         let fetchRequest = NSFetchRequest<Game>(entityName: "Game")
                         fetchRequest.predicate = NSPredicate(format: "gameId == %@", game.gameId)
@@ -494,7 +510,7 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
                                 game.inWishList = result[0].inWishList
                             }
                         } catch {
-                            print(error)
+                            self.displayError(title: "Core Data Error", message: error as! String)
                         }
                         if (self.platformMap[game.platformKey] == nil) {
                             self.platformMap[game.platformKey] = [GBGame]()
@@ -508,13 +524,43 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
                     self.removeLoadingScreen()
                 }
             },
-            errorHandler: {(error: Error) -> Void in
-                print("Error: \(error)")
+            errorHandler: {(title : String, message: String) -> Void in
+                self.displayError(title: title, message: message)
                 DispatchQueue.main.async {
                     self.removeLoadingScreen()
                     self.tableView.backgroundView = self.noResultsLabel
                 }
             })
+    }
+    
+    private func rescanSearchResults() {
+        for (key, games) in self.platformMap {
+            var i = 0
+            for var game in games {
+                let fetchRequest = NSFetchRequest<Game>(entityName: "Game")
+                fetchRequest.predicate = NSPredicate(format: "gameId == %@", game.gameId)
+                
+                do {
+                    let result = try self.context.fetch(fetchRequest)
+                    if (result.count > 0) {
+                        game.inCollection = result[0].inCollection
+                        game.inWishList = result[0].inWishList
+                        
+                        self.platformMap[key]?[i] = game
+                    } else {
+                        game.inCollection = false
+                        game.inWishList = false
+                        
+                        self.platformMap[key]?[i] = game
+                    }
+                } catch {
+                    self.displayError(title: "Core Data Error", message: error as! String)
+                }
+                
+                i += 1
+            }
+        }
+        self.tableView.reloadData()
     }
     
     private func getPlatformBy(section: Int) -> String! {
@@ -559,7 +605,7 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
                     try self.context.save()
                 }
             } catch {
-                print(error)
+                self.displayError(title: "Core Data Error", message: error as! String)
             }
         }
     }
@@ -579,7 +625,7 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 try self.context.save()
             } catch {
-                print(error)
+                self.displayError(title: "Core Data Error", message: error as! String)
             }
         }
     }
@@ -599,7 +645,7 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 try self.context.save()
             } catch {
-                print(error)
+                self.displayError(title: "Core Data Error", message: error as! String)
             }
         }
     }
@@ -614,10 +660,10 @@ class GameSearchViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // Remove the activity indicator from the main view
-    private func removeLoadingScreen() {
+    private func removeLoadingScreen(label : UILabel! = nil) {
         self.titleSearch.isEnabled = true
         self.searchButton.isEnabled = true
-        self.tableView.backgroundView = nil
+        self.tableView.backgroundView = label
     }
 }
 
